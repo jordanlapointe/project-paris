@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import RoomConfiguration from './RoomConfiguration'
+import './App.css'
 
 class App extends Component {
   render() {
     return (
       <div>
-        {/* add RoomCount component here */}
+        <RoomConfiguration />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
