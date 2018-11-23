@@ -4,11 +4,41 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+input[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=checkbox]:not(:disabled) + label {
+  position: relative;
+}
+
+input[type=checkbox]:not(:disabled) + label:before {
+  content: '';
+  background: #fff;
+  border: solid 1px var(--color-gray);
+  border-radius: 2px;
+  display: inline-block;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: -6px;
+  width: 24px;
+}
+
+input[type=checkbox]:checked:not(:disabled) + label:before {
+  border-color: var(--color-active);
+}
+
+input[type=checkbox]:checked:not(:disabled) + label:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 8px;
+  border-right: 3px solid var(--color-active);
+  border-bottom: 3px solid var(--color-active);
+  height: 14px;
+  width: 7px;
+  transform: rotate(50deg);
 }

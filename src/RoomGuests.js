@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './RoomGuests.css'
 
 class RoomGuests extends Component {
   handleToggle = event => {
@@ -18,35 +19,56 @@ class RoomGuests extends Component {
     } = this.props
 
     const indexFormatted = index + 1
+    const stateClass = toggled ? ' is-selected' : ''
 
     return (
-      <li>
-        { toggleable ? (
-          <label>
-            <input checked={ toggled } type="checkbox" onChange={ this.handleToggle }  />
+      <li className={ 'RoomGuests' + stateClass }>
+        <div className="RoomGuests-toggle">
+          <input
+            checked={ toggled }
+            className="RoomGuests-toggleInput"
+            disabled={ !toggleable }
+            id={ `RoomGuests-${indexFormatted}-enabled` }
+            onChange={ this.handleToggle }
+            type="checkbox"
+          />
+          <label
+            className="RoomGuests-toggleLabel"
+            htmlFor={ `RoomGuests-${indexFormatted}-enabled` }
+          >
             Room { indexFormatted }
           </label>
-        ) : (
-          <h2>
-            Room { indexFormatted }
-          </h2>
-        )}
-        <label>
-          Adults (18+)
-        </label>
-        <select disabled={ !toggled }>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </select>
-        <label>
-          Children (0–17)
-        </label>
-        <select disabled={ !toggled }>
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-        </select>
+        </div>
+        <div className="Layout RoomGuests-options">
+          <div className="Layout-half">
+            <label htmlFor={ `RoomGuests-${indexFormatted}-adultCount` }>
+              Adults<br /> (18+)
+            </label>
+            <br />
+            <select
+              disabled={ !toggled }
+              id={ `RoomGuests-${indexFormatted}-adultCount` }
+            >
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div className="Layout-half">
+            <label htmlFor={ `RoomGuests-${indexFormatted}-childrenCount` }>
+              Children<br /> (0–17)
+            </label>
+            <br />
+            <select
+              disabled={ !toggled }
+              id={ `RoomGuests-${indexFormatted}-childrenCount` }
+            >
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </div>
+        </div>
       </li>
     )
   }

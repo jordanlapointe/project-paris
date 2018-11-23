@@ -13,6 +13,7 @@ class RoomConfiguration extends Component {
 
   handleRoomChange = (roomIndex, checked) => {
     const newRoomCount = checked ? roomIndex : roomIndex - 1
+
     this.setState({
       numberOfAdditionalRooms: newRoomCount
     })
