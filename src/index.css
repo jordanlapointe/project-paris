@@ -6,6 +6,11 @@ body {
     sans-serif;
 }
 
+img {
+  height: auto;
+  max-width: 100%;
+}
+
 input[type=checkbox],
 input[type=checkbox] + label {
   vertical-align: middle;
