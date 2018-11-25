@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './HotelDetails.css'
+import HeroImage from './images/hotelexterior.jpg'
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
         <main className="page-content">
           <div className="page-content__inner-wrapper">
             <div className="content--reversed">
-              <img alt="Hotel exterior" src="http://placehold.it/1920x1080" height="1080" width="1920" />
+              <img alt="Hotel exterior" className="hero-image" src={ HeroImage } />
               <h1>
                 Hilton Chicago
               </h1>
