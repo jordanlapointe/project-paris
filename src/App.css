@@ -1,5 +1,6 @@
 .App{
     --color-active: #009cde;
+    --color-brand-dark: #061E38;
     --color-gray: #979797;
     --color-gray-light: rgba(102,102,102,0.05);
 }

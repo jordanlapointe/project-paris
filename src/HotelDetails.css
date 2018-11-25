@@ -1,0 +1,122 @@
+.button {
+  appearance: none;
+  display: inline-block;
+  background-color: #000;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.button:focus,
+.button:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+}
+
+.button:focus {
+  box-shadow: inset 0 0 0 2px #fff;
+  outline: none;
+}
+
+.content--reversed {
+  color: #fff;
+}
+
+.content--reversed a {
+  color: #fff;
+}
+
+.content--reversed a:focus {
+  outline: 1px dotted #fff;
+}
+
+.content--reversed h1 {
+  font-size: 21px;
+}
+
+.content--reversed p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nav-list {
+  padding-left: 0;
+}
+
+.nav-list__item {
+  list-style: none;
+}
+
+.nav-list__item + .nav-list__item {
+  border-top: 1px solid #ccc;
+}
+
+.nav-list__link {
+  align-items: center;
+  background-color: #fff;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+  color: var(--color-brand-dark);
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  text-decoration: none;
+  padding: 15px 20px;
+}
+
+.nav-list__link:after {
+  content: '›';
+  font-size: 24px;
+}
+
+.nav-list__link:focus,
+.nav-list__link:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
+}
+
+.nav-list__link:focus {
+  box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px var(--color-brand-dark);
+  outline: none;
+}
+
+.nav-list__item:first-child .nav-list__link {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.nav-list__item:last-child .nav-list__link {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.page-content {
+  background-color: var(--color-brand-dark);
+  background-image: url(images/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+}
+
+.page-content__inner-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+}
+
+.page-header {
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}

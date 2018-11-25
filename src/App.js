@@ -21,13 +21,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <a href="javascript://" onClick={ this.toggleDemo }>
+        <button onClick={ this.toggleDemo }>
           { this.state.showConfiguratorDemo ?
             'Show hotel page demo'
           :
             'Show configurator demo'
           }
-        </a>
+        </button>
         { this.state.showConfiguratorDemo ? (
           <RoomConfiguration />
         ) : (
