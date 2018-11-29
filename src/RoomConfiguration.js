@@ -1,42 +1,43 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
+import { RoomContext, RoomContextProvider } from './RoomContext'
 import RoomGuests from './RoomGuests'
 
-const maxRoomCount = 4
+function RoomForm () {
+  const { state } = useContext(RoomContext)
 
-class RoomConfiguration extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      numberOfAdditionalRooms: 0
-    }
+  function handleSubmit (event) {
+    event.preventDefault()
+    console.log(state)
   }
 
-  handleRoomChange = (roomIndex, checked) => {
-    const newRoomCount = checked ? roomIndex : roomIndex - 1
-
-    this.setState({
-      numberOfAdditionalRooms: newRoomCount
-    })
-  }
-
-  render() {
-    return (
+  return (
+    <form action="" onSubmit={ handleSubmit }>
       <ul>
-        { [...Array(maxRoomCount).keys()].map(index => {
+        { state.rooms.map((room, index) => {
           const isFirstRoom = index === 0
-          const isToggled = index <= this.state.numberOfAdditionalRooms
 
           return <RoomGuests
             index={ index }
             key={ index }
-            onToggle={ this.handleRoomChange }
-            toggled={ isToggled }
             toggleable={ !isFirstRoom }
           />
         }) }
       </ul>
-    )
-  }
+      <button>
+        Save room configuration
+      </button>
+      <br />
+      <small>
+        Form data will log to your browser’s console.
+      </small>
+    </form>
+  )
 }
 
-export default RoomConfiguration
+export default function RoomConfiguration () {
+  return (
+    <RoomContextProvider>
+      <RoomForm />
+    </RoomContextProvider>
+  )
+}

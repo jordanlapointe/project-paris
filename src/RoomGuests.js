@@ -1,77 +1,83 @@
-import React, { Component } from 'react'
-import './RoomGuests.css'
+import React, { useContext } from 'react'
+import { RoomContext } from './RoomContext'
+import * as styled from './RoomGuests.css.js'
 
-class RoomGuests extends Component {
-  handleToggle = event => {
-    const {
-      index,
-      onToggle
-    } = this.props
+export default function RoomGuests(props) {
+  const {
+    index,
+    toggleable = true
+  } = props
+  const {
+    state,
+    dispatch
+  } = useContext(RoomContext)
+  const { selected } = state.rooms[index]
+  const indexFormatted = index + 1
+  const stateClass = selected ? ' is-selected' : ''
 
-    onToggle(index, event.target.checked)
+  function handleToggle (event) {
+    dispatch({ type: 'room-toggle', payload: { index, checked: event.target.checked } })
   }
 
-  render() {
-    const {
-      index,
-      toggled = false,
-      toggleable = true
-    } = this.props
+  function handleAdultCountChange (event) {
+    dispatch({ type: 'adult-count-change', payload: { index, count: event.target.value } })
+  }
 
-    const indexFormatted = index + 1
-    const stateClass = toggled ? ' is-selected' : ''
+  function handleChildCountChange (event) {
+    dispatch({ type: 'child-count-change', payload: { index, count: event.target.value } })
+  }
 
-    return (
-      <li className={ 'RoomGuests' + stateClass }>
-        <div className="RoomGuests-toggle">
-          <input
-            checked={ toggled }
-            className="RoomGuests-toggleInput"
-            disabled={ !toggleable }
-            id={ `RoomGuests-${indexFormatted}-enabled` }
-            onChange={ this.handleToggle }
-            type="checkbox"
-          />
-          <label
-            className="RoomGuests-toggleLabel"
-            htmlFor={ `RoomGuests-${indexFormatted}-enabled` }
-          >
-            Room { indexFormatted }
+  return (
+    <styled.Wrapper className={ stateClass }>
+      <styled.Toggle>
+        <styled.ToggleInput
+          checked={ selected }
+          disabled={ !toggleable }
+          id={ `RoomGuests-${indexFormatted}-enabled` }
+          onChange={ handleToggle }
+          type="checkbox"
+        />
+        <styled.ToggleLabel
+          className="RoomGuests-toggleLabel"
+          htmlFor={ `RoomGuests-${indexFormatted}-enabled` }
+        >
+          Room { indexFormatted }
+        </styled.ToggleLabel>
+      </styled.Toggle>
+      <styled.Options>
+        <styled.Option>
+          <label htmlFor={ `RoomGuests-${indexFormatted}-adultCount` }>
+            Adults<br /> (18+)
           </label>
-        </div>
-        <div className="Layout RoomGuests-options">
-          <div className="Layout-half">
-            <label htmlFor={ `RoomGuests-${indexFormatted}-adultCount` }>
-              Adults<br /> (18+)
-            </label>
-            <br />
-            <select
-              disabled={ !toggled }
-              id={ `RoomGuests-${indexFormatted}-adultCount` }
-            >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>
-          <div className="Layout-half">
-            <label htmlFor={ `RoomGuests-${indexFormatted}-childrenCount` }>
-              Children<br /> (0–17)
-            </label>
-            <br />
-            <select
-              disabled={ !toggled }
-              id={ `RoomGuests-${indexFormatted}-childrenCount` }
-            >
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-            </select>
-          </div>
-        </div>
-      </li>
-    )
-  }
+          <br />
+          <select
+            disabled={ !selected }
+            id={ `RoomGuests-${indexFormatted}-adultCount` }
+            onChange={ handleAdultCountChange }
+            value={ state.rooms[index].adultCount }
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </styled.Option>
+        <styled.Option>
+          <label htmlFor={ `RoomGuests-${indexFormatted}-childrenCount` }>
+            Children<br /> (0–17)
+          </label>
+          <br />
+          <select
+            disabled={ !selected }
+            id={ `RoomGuests-${indexFormatted}-childrenCount` }
+            onChange={ handleChildCountChange }
+            value={ state.rooms[index].childCount }
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </styled.Option>
+      </styled.Options>
+    </styled.Wrapper>
+  )
 }
-
-export default RoomGuests

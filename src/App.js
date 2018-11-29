@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import HotelDetails from './HotelDetails'
 import RoomConfiguration from './RoomConfiguration'
 import './App.css'
-import './Layout.css'
 
 class App extends Component {
   constructor(props) {
